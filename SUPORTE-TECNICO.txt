@@ -1,0 +1,596 @@
+# 📞 ASSISTÊNCIA TÉCNICA - PIXEL ARTE PORTFÓLIO
+
+## 🎯 Guia Completo de Suporte Técnico
+
+---
+
+## 📋 ÍNDICE
+
+1. [Instalação e Setup](#instalação-e-setup)
+2. [Troubleshooting](#troubleshooting)
+3. [Customização Avançada](#customização-avançada)
+4. [FAQ - Perguntas Frequentes](#faq)
+5. [Contato e Suporte](#contato-e-suporte)
+
+---
+
+## 🚀 Instalação e Setup
+
+### ✅ OPÇÃO 1: Usar Online (Recomendado para Iniciantes)
+
+**Passo 1:** Acesse o site
+```
+https://pixelarteofc2027.github.io/
+```
+
+**Vantagens:**
+- ✨ Sem instalação necessária
+- ✨ Acesso imediato
+- ✨ Sempre atualizado
+- ✨ Funciona em qualquer dispositivo
+
+---
+
+### ✅ OPÇÃO 2: Clonar Localmente (Para Desenvolvedores)
+
+**Passo 1:** Instale Git
+- Windows: https://git-scm.com/download/win
+- Mac: `brew install git`
+- Linux: `sudo apt-get install git`
+
+**Passo 2:** Clone o repositório
+```bash
+git clone https://github.com/pixelarteofc2027/pixelarteofc2027.github.io.git
+cd pixelarteofc2027.github.io
+```
+
+**Passo 3:** Abra o arquivo index.html
+```bash
+# Windows
+start index.html
+
+# Mac
+open index.html
+
+# Linux
+xdg-open index.html
+```
+
+---
+
+### ✅ OPÇÃO 3: Usar Servidor Local
+
+**Com Python 3:**
+```bash
+python -m http.server 8000
+```
+
+**Com Python 2:**
+```bash
+python -m SimpleHTTPServer 8000
+```
+
+**Com Node.js (http-server):**
+```bash
+# Instale primeiro
+npm install -g http-server
+
+# Execute
+http-server
+```
+
+**Acesse:** `http://localhost:8000`
+
+---
+
+## 🐛 Troubleshooting - Soluções de Problemas
+
+### ❌ PROBLEMA 1: Site não carrega
+
+**Sintomas:**
+- Página em branco
+- Erros no console
+- Layout quebrado
+
+**Causas Possíveis:**
+1. Arquivo corrompido
+2. Caminho incorreto
+3. Navegador incompatível
+
+**Soluções:**
+
+**Solução A:** Verifique o caminho dos arquivos
+```bash
+# Certifique-se que os 4 arquivos estão na mesma pasta:
+- index.html
+- style.css
+- script.js
+- README.md
+```
+
+**Solução B:** Limpe o cache do navegador
+```
+Windows/Linux: Ctrl + Shift + Del
+Mac: Cmd + Shift + Delete
+```
+
+**Solução C:** Tente outro navegador
+- Google Chrome (Recomendado)
+- Firefox
+- Safari
+- Edge
+
+**Solução D:** Verifique o console
+```
+Pressione: F12 ou Ctrl + Shift + I
+Vá para a aba "Console"
+Procure por erros em vermelho
+```
+
+---
+
+### ❌ PROBLEMA 2: Animações não funcionam
+
+**Sintomas:**
+- Cards aparecem sem efeito
+- Título não digita
+- Scroll não funciona
+
+**Causa:** Script.js não está sendo carregado
+
+**Solução:**
+
+Verifique se no final do `index.html` existe:
+```html
+<script src="script.js"></script>
+</body>
+</html>
+```
+
+Se não existir, adicione manualmente:
+1. Abra `index.html` no editor
+2. Encontre a tag `</body>` (última linha)
+3. Adicione antes dela:
+```html
+<script src="script.js"></script>
+```
+
+---
+
+### ❌ PROBLEMA 3: Cores diferentes do esperado
+
+**Sintomas:**
+- Cores estão erradas
+- Gradiente diferente
+- Botões com cores estranhas
+
+**Causa:** Cache do navegador ou CSS não carregado
+
+**Solução:**
+
+**Passo 1:** Recarregue com força
+```
+Windows/Linux: Ctrl + F5
+Mac: Cmd + Shift + R
+```
+
+**Passo 2:** Se ainda não funcionar, limpe o cache completo
+```
+F12 > Application > Local Storage > Clear All
+```
+
+---
+
+### ❌ PROBLEMA 4: Imagens não aparecem
+
+**Sintomas:**
+- Espaços em branco onde deviam ter imagens
+- Símbolo quebrado (X)
+- Console mostra 404 errors
+
+**Solução:**
+
+As imagens atuais usam placeholder. Para usar suas próprias:
+
+1. Crie uma pasta `imagens` na mesma pasta do projeto
+2. Coloque suas imagens lá
+3. Altere os URLs no `index.html`:
+
+**De:**
+```html
+<img src="https://via.placeholder.com/300x300?text=Projeto+1" alt="Projeto 1">
+```
+
+**Para:**
+```html
+<img src="imagens/meu-projeto-1.jpg" alt="Projeto 1">
+```
+
+---
+
+### ❌ PROBLEMA 5: Formulário não funciona
+
+**Sintomas:**
+- Mensagem não é enviada
+- Erro ao clicar em "Enviar"
+- Campo de email fica vermelho
+
+**Solução A:** Use Formspree (Recomendado)
+
+1. Acesse: https://formspree.io
+2. Crie uma conta
+3. Adicione seu email
+4. Copie o ID do formulário
+5. No `index.html`, altere a tag `<form>`:
+
+**De:**
+```html
+<form class="contact-form">
+```
+
+**Para:**
+```html
+<form class="contact-form" action="https://formspree.io/f/SEU_ID" method="POST">
+```
+
+**Solução B:** Use EmailJS
+
+1. Acesse: https://www.emailjs.com
+2. Crie uma conta
+3. Configure seu email
+4. Adicione ao `index.html` no `<head>`:
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
+```
+
+5. Adicione no `script.js`:
+```javascript
+emailjs.init('SEU_PUBLIC_KEY');
+```
+
+---
+
+### ❌ PROBLEMA 6: Links de navegação não funcionam
+
+**Sintomas:**
+- Clicando no menu não vai para seção
+- Scroll não funciona
+- Link fica na mesma página
+
+**Solução:**
+
+Verifique se os `id` das seções correspondem aos `href` dos links.
+
+**Correto:**
+```html
+<!-- Link -->
+<a href="#sobre">Sobre</a>
+
+<!-- Seção -->
+<section id="sobre">Conteúdo aqui</section>
+```
+
+**Incorreto:**
+```html
+<!-- Link com id diferente -->
+<a href="#sobremim">Sobre</a>
+
+<!-- Seção com outro id -->
+<section id="sobre">Conteúdo aqui</section>
+```
+
+---
+
+### ❌ PROBLEMA 7: Site não responsivo no mobile
+
+**Sintomas:**
+- Zoom automaticamente
+- Texto muito grande
+- Layout quebrado em celular
+
+**Causa:** Meta viewport não está configurado
+
+**Solução:**
+
+Verifique se no `<head>` do `index.html` existe:
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+Se não existir, adicione na primeira linha após `<head>`.
+
+---
+
+## 🎨 Customização Avançada
+
+### 1️⃣ Mudar Cores do Site
+
+**Localize em `style.css`:**
+```css
+:root {
+    --cor-primaria: #6c5ce7;      /* Roxo - Mude aqui */
+    --cor-secundaria: #a29bfe;    /* Roxo Claro - Mude aqui */
+    --cor-texto: #2d3436;         /* Texto - Mude aqui */
+    --cor-fundo: #f5f6fa;         /* Fundo - Mude aqui */
+    --cor-branco: #ffffff;        /* Branco */
+    --cor-cinza: #b2bec3;         /* Cinza - Mude aqui */
+}
+```
+
+**Exemplo de Mudança:**
+```css
+/* Original - Roxo */
+--cor-primaria: #6c5ce7;
+
+/* Novo - Azul */
+--cor-primaria: #0984e3;
+```
+
+**Ferramentas para Escolher Cores:**
+- https://www.color-hex.com/
+- https://colorpicker.com/
+- https://www.palettton.com/
+
+---
+
+### 2️⃣ Adicionar Mais Projetos
+
+**Passo 1:** Abra `index.html`
+
+**Passo 2:** Encontre a seção:
+```html
+<div class="portfolio-grid">
+    <!-- Projetos aqui -->
+</div>
+```
+
+**Passo 3:** Copie um card completo:
+```html
+<div class="portfolio-item">
+    <div class="portfolio-image">
+        <img src="https://via.placeholder.com/300x300?text=Projeto" alt="Projeto">
+    </div>
+    <h3>Nome do Projeto</h3>
+    <p>Descrição do projeto</p>
+</div>
+```
+
+**Passo 4:** Cole após o último projeto
+
+**Passo 5:** Altere:
+- A URL da imagem
+- O título (h3)
+- A descrição (p)
+
+---
+
+### 3️⃣ Mudar Fontes
+
+**Adicione Google Fonts ao `<head>`:**
+```html
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+```
+
+**Mude em `style.css`:**
+```css
+body {
+    font-family: 'Roboto', sans-serif;  /* Mudou aqui */
+}
+```
+
+**Fontes Populares:**
+- Poppins
+- Roboto
+- Open Sans
+- Playfair Display
+- Montserrat
+
+---
+
+### 4️⃣ Adicionar Ícones (Font Awesome)
+
+**Adicione ao `<head>` do `index.html`:**
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+```
+
+**Use em qualquer lugar:**
+```html
+<i class="fas fa-twitter"></i>
+<i class="fas fa-instagram"></i>
+<i class="fas fa-github"></i>
+```
+
+---
+
+### 5️⃣ Adicionar Animações Extra (Animate.css)
+
+**Adicione ao `<head>` do `index.html`:**
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+```
+
+**Use em elementos:**
+```html
+<h2 class="animate__animated animate__fadeInDown">Seu Título</h2>
+```
+
+**Animações Disponíveis:**
+- fadeIn, fadeInDown, fadeInUp, fadeInLeft, fadeInRight
+- slideIn, slideInDown, slideInUp
+- bounceIn, bounceInDown, bounceInUp
+- zoomIn, zoomInDown, zoomInUp
+- rotateIn, rotateInDownLeft, rotateInDownRight
+
+---
+
+### 6️⃣ Mudar Redes Sociais
+
+**No footer do `index.html`:**
+```html
+<a href="https://twitter.com/seu-usuario" target="_blank">Twitter</a>
+<a href="https://instagram.com/seu-usuario" target="_blank">Instagram</a>
+<a href="https://linkedin.com/in/seu-usuario" target="_blank">LinkedIn</a>
+<a href="https://github.com/seu-usuario" target="_blank">GitHub</a>
+```
+
+**Adicione mais:**
+```html
+<a href="https://youtube.com/@seu-usuario" target="_blank">YouTube</a>
+<a href="https://tiktok.com/@seu-usuario" target="_blank">TikTok</a>
+<a href="https://dribbble.com/seu-usuario" target="_blank">Dribbble</a>
+```
+
+---
+
+## ❓ FAQ - Perguntas Frequentes
+
+### P: Como publico meu portfólio?
+**R:** O site já está publicado em: https://pixelarteofc2027.github.io/
+Para seu próprio domínio, configure em GitHub Pages.
+
+---
+
+### P: Posso usar isso para outro portfólio?
+**R:** Sim! Clone o repositório e customize conforme necessário.
+
+---
+
+### P: Como mudo o título da página?
+**R:** Em `index.html`, procure por:
+```html
+<title>Pixel Arte - Portfólio</title>
+```
+Mude para seu próprio título.
+
+---
+
+### P: Posso adicionar mais seções?
+**R:** Sim! Copie a estrutura de uma seção existente e customize.
+
+---
+
+### P: Como faço backup do meu trabalho?
+**R:** Use Git para versionamento:
+```bash
+git add .
+git commit -m "Mensagem de backup"
+git push
+```
+
+---
+
+### P: Qual navegador recomenda?
+**R:** Google Chrome é o mais recomendado, mas também funciona em:
+- Firefox
+- Safari
+- Edge
+- Opera
+
+---
+
+### P: Como mudo a velocidade das animações?
+**R:** Em `script.js`, procure por valores em `setTimeout`:
+```javascript
+setTimeout(typeEffect, 50);  // Mude 50 para mais rápido/lento
+```
+
+Valores:
+- 10-30: Muito rápido
+- 30-50: Rápido (padrão)
+- 50-100: Normal
+- 100+: Lento
+
+---
+
+### P: Como desativo uma animação?
+**R:** Comente o código em `script.js`:
+```javascript
+// typeEffect();  // Comentado desativa a animação
+```
+
+---
+
+### P: Como mudo o tamanho de fonte?
+**R:** Em `style.css`, procure por `font-size` e mude:
+```css
+h2 {
+    font-size: 40px;  /* Mude para 50px, 30px, etc */
+}
+```
+
+---
+
+### P: Posso usar em um projeto comercial?
+**R:** Sim! Está sob licença MIT - use livremente.
+
+---
+
+## 📞 Contato e Suporte
+
+### 📧 Email
+- **pixelarteofc2025@gmail.com**
+
+### 🐙 GitHub
+- **@pixelarteofc2027**
+
+### 🌐 Sites Úteis
+
+| Ferramenta | Link | Uso |
+|-----------|------|-----|
+| GitHub | https://github.com | Versionamento |
+| VS Code | https://code.visualstudio.com | Editor de Código |
+| Formspree | https://formspree.io | Formulários |
+| EmailJS | https://www.emailjs.com | Envio de Emails |
+| Font Awesome | https://fontawesome.com | Ícones |
+| Google Fonts | https://fonts.google.com | Fontes |
+| Color Picker | https://colorpicker.com | Cores |
+| TinyPNG | https://tinypng.com | Otimizar Imagens |
+
+---
+
+## 🎓 Tutoriais Recomendados
+
+1. **HTML Básico:**
+   - https://www.w3schools.com/html/
+
+2. **CSS Avançado:**
+   - https://css-tricks.com/
+
+3. **JavaScript:**
+   - https://javascript.info/
+
+4. **Git e GitHub:**
+   - https://github.com/skills/introduction-to-github
+
+5. **Design Responsivo:**
+   - https://web.dev/responsive-web-design-basics/
+
+---
+
+## 📝 Notas Importantes
+
+⚠️ **Sempre faça backup antes de fazer alterações grandes**
+
+```bash
+git add .
+git commit -m "Backup antes de mudanças"
+git push
+```
+
+✅ **Teste as mudanças em diferentes navegadores**
+
+✅ **Teste no mobile e desktop**
+
+✅ **Mantenha os nomes dos arquivos iguais** (index.html, style.css, script.js)
+
+---
+
+**Versão:** 1.0.0  
+**Última Atualização:** 2026-07-18  
+**Status:** ✅ Completo e Testado
+
+---
+
+*Desenvolvido com ❤️ por Pixel Arte*  
+*Suporte técnico 24/7 disponível*
