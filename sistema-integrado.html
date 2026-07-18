@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Integrado - Assistência Técnica & PDV</title>
+    <link rel="stylesheet" href="sistema.css">
+</head>
+<body>
+    <!-- Login -->
+    <div id="loginContainer" class="login-container">
+        <div class="login-box">
+            <h1>🔐 Sistema Integrado</h1>
+            <p>Assistência Técnica & PDV</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="usuario">Usuário:</label>
+                    <input type="text" id="usuario" placeholder="Digite seu usuário" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" placeholder="Digite sua senha" required>
+                </div>
+                
+                <button type="submit" class="btn btn-login">Entrar</button>
+            </form>
+            
+            <div class="login-info">
+                <p><strong>Demo - Admin:</strong></p>
+                <p>Usuário: 27020320</p>
+                <p>Senha: 270203200</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sistema Principal -->
+    <div id="sistemaPrincipal" class="sistema-principal" style="display: none;">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>🔧 Assistech</h2>
+                <p id="usuarioNome">Admin</p>
+            </div>
+            
+            <nav class="menu">
+                <button class="menu-item active" onclick="abrirAbaPrincipal('dashboard')">
+                    📊 Dashboard
+                </button>
+                <button class="menu-item" onclick="abrirAbaPrincipal('pdv')">
+                    💳 PDV / Caixa
+                </button>
+                <button class="menu-item" onclick="abrirAbaPrincipal('assistencia')">
+                    🔧 Assistência Técnica
+                </button>
+                <button class="menu-item" onclick="abrirAbaPrincipal('clientes')">
+                    👥 Clientes
+                </button>
+                <button class="menu-item" onclick="abrirAbaPrincipal('relatorios')">
+                    📈 Relatórios
+                </button>
+                <button class="menu-item" onclick="abrirAbaPrincipal('usuarios')">
+                    👤 Usuários
+                </button>
+                <button class="menu-item" onclick="abrirAbaPrincipal('painel-cliente')">
+                    🌐 Painel Cliente
+                </button>
+                <button class="menu-item logout" onclick="fazerLogout()">
+                    🚪 Sair
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <!-- Header -->
+            <header class="header">
+                <h1 id="tituloPagina">Dashboard</h1>
+                <div class="header-info">
+                    <span id="dataHora"></span>
+                    <span id="usuarioInfo">Admin</span>
+                </div>
+            </header>
+
+            <!-- Dashboard -->
+            <section id="dashboard" class="aba-conteudo ativa">
+                <div class="dashboard-grid">
+                    <div class="card-stats">
+                        <h3>💰 Vendas Hoje</h3>
+                        <p class="valor">R$ 1.250,00</p>
+                        <small>+12% vs ontem</small>
+                    </div>
+                    <div class="card-stats">
+                        <h3>🔧 Serviços Abertos</h3>
+                        <p class="valor">8</p>
+                        <small>3 para hoje</small>
+                    </div>
+                    <div class="card-stats">
+                        <h3>👥 Clientes Ativos</h3>
+                        <p class="valor">45</p>
+                        <small>5 novos esta semana</small>
+                    </div>
+                    <div class="card-stats">
+                        <h3>⭐ Satisfação</h3>
+                        <p class="valor">4.8/5</p>
+                        <small>Excelente</small>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <h3>Vendas por Dia (Esta Semana)</h3>
+                        <div class="chart-bar">
+                            <div class="bar" style="height: 60%;">Seg</div>
+                            <div class="bar" style="height: 75%;">Ter</div>
+                            <div class="bar" style="height: 85%;">Qua</div>
+                            <div class="bar" style="height: 70%;">Qui</div>
+                            <div class="bar" style="height: 90%;">Sex</div>
+                            <div class="bar" style="height: 45%;">Sab</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <h3>Tipos de Serviço</h3>
+                        <ul>
+                            <li>Reparo de Celular: 35%</li>
+                            <li>Reparo de Notebook: 30%</li>
+                            <li>Venda de Acessórios: 20%</li>
+                            <li>Limpeza de Vírus: 15%</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PDV / Frente de Caixa -->
+            <section id="pdv" class="aba-conteudo">
+                <div class="pdv-container">
+                    <div class="pdv-esquerda">
+                        <h3>📦 Produtos</h3>
+                        <div class="search-box">
+                            <input type="text" id="buscarProduto" placeholder="Buscar produto...">
+                        </div>
+                        <div class="produtos-lista" id="produtosLista">
+                            <div class="produto-item" onclick="adicionarAoCarrinho('Cabo USB', 25.00)">
+                                <div class="produto-info">
+                                    <strong>Cabo USB</strong>
+                                    <p>R$ 25,00</p>
+                                </div>
+                            </div>
+                            <div class="produto-item" onclick="adicionarAoCarrinho('Fone Bluetooth', 150.00)">
+                                <div class="produto-info">
+                                    <strong>Fone Bluetooth</strong>
+                                    <p>R$ 150,00</p>
+                                </div>
+                            </div>
+                            <div class="produto-item" onclick="adicionarAoCarrinho('Película Protetora', 35.00)">
+                                <div class="produto-info">
+                                    <strong>Película Protetora</strong>
+                                    <p>R$ 35,00</p>
+                                </div>
+                            </div>
+                            <div class="produto-item" onclick="adicionarAoCarrinho('Case Protetor', 80.00)">
+                                <div class="produto-info">
+                                    <strong>Case Protetor</strong>
+                                    <p>R$ 80,00</p>
+                                </div>
+                            </div>
+                            <div class="produto-item" onclick="adicionarAoCarrinho('Carregador Rápido', 120.00)">
+                                <div class="produto-info">
+                                    <strong>Carregador Rápido</strong>
+                                    <p>R$ 120,00</p>
+                                </div>
+                            </div>
+                            <div class="produto-item" onclick="adicionarAoCarrinho('Bateria Externa', 90.00)">
+                                <div class="produto-info">
+                                    <strong>Bateria Externa</strong>
+                                    <p>R$ 90,00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pdv-direita">
+                        <h3>🛒 Carrinho</h3>
+                        <div id="carrinhoItems" class="carrinho-items">
+                            <p style="text-align: center; color: #999;">Carrinho vazio</p>
+                        </div>
+                        
+                        <div class="carrinho-resumo">
+                            <div class="resumo-linha">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">R$ 0,00</span>
+                            </div>
+                            <div class="resumo-linha">
+                                <span>Desconto:</span>
+                                <input type="number" id="desconto" placeholder="0" style="width: 80px; padding: 5px;">
+                                <span>%</span>
+                            </div>
+                            <div class="resumo-linha">
+                                <span>Taxa:</span>
+                                <span id="taxa">R$ 0,00</span>
+                            </div>
+                            <div class="resumo-linha total">
+                                <span>Total:</span>
+                                <span id="total">R$ 0,00</span>
+                            </div>
+                        </div>
+
+                        <div class="pagamento-opcoes">
+                            <button class="btn btn-pagamento" onclick="processarPagamento('dinheiro')">💵 Dinheiro</button>
+                            <button class="btn btn-pagamento" onclick="processarPagamento('cartao')">💳 Cartão</button>
+                            <button class="btn btn-pagamento" onclick="processarPagamento('pix')">📱 PIX</button>
+                        </div>
+
+                        <button class="btn btn-limpar" onclick="limparCarrinho()">🗑️ Limpar</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assistência Técnica -->
+            <section id="assistencia" class="aba-conteudo">
+                <div class="assistencia-header">
+                    <h3>🔧 Gerenciar Serviços de Assistência</h3>
+                    <button class="btn btn-novo" onclick="novoServico()">➕ Novo Serviço</button>
+                </div>
+
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Equipamento</th>
+                            <th>Problema</th>
+                            <th>Status</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#001</td>
+                            <td>João Silva</td>
+                            <td>iPhone 12</td>
+                            <td>Tela quebrada</td>
+                            <td><span class="status em-andamento">Em Andamento</span></td>
+                            <td>18/07/2026</td>
+                            <td>
+                                <button class="btn-pequeno" onclick="editarServico(1)">✏️</button>
+                                <button class="btn-pequeno" onclick="finalizarServico(1)">✅</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#002</td>
+                            <td>Maria Santos</td>
+                            <td>Notebook Dell</td>
+                            <td>Não liga</td>
+                            <td><span class="status aberto">Aberto</span></td>
+                            <td>18/07/2026</td>
+                            <td>
+                                <button class="btn-pequeno" onclick="editarServico(2)">✏️</button>
+                                <button class="btn-pequeno" onclick="finalizarServico(2)">✅</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#003</td>
+                            <td>Pedro Costa</td>
+                            <td>Samsung S21</td>
+                            <td>Câmera não funciona</td>
+                            <td><span class="status finalizado">Finalizado</span></td>
+                            <td>17/07/2026</td>
+                            <td>
+                                <button class="btn-pequeno" onclick="visualizarServico(3)">👁️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Clientes -->
+            <section id="clientes" class="aba-conteudo">
+                <div class="clientes-header">
+                    <h3>👥 Gerenciar Clientes</h3>
+                    <button class="btn btn-novo" onclick="novoCliente()">➕ Novo Cliente</button>
+                </div>
+
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Endereço</th>
+                            <th>Serviços</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>João Silva</td>
+                            <td>(11) 98765-4321</td>
+                            <td>joao@email.com</td>
+                            <td>Rua A, 123</td>
+                            <td>5</td>
+                            <td>
+                                <button class="btn-pequeno" onclick="editarCliente(1)">✏️</button>
+                                <button class="btn-pequeno" onclick="deletarCliente(1)">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Maria Santos</td>
+                            <td>(11) 99876-5432</td>
+                            <td>maria@email.com</td>
+                            <td>Rua B, 456</td>
+                            <td>3</td>
+                            <td>
+                                <button class="btn-pequeno" onclick="editarCliente(2)">✏️</button>
+                                <button class="btn-pequeno" onclick="deletarCliente(2)">🗑️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Relatórios -->
+            <section id="relatorios" class="aba-conteudo">
+                <div class="relatorios-header">
+                    <h3>📊 Relatórios e Análises</h3>
+                </div>
+
+                <div class="filtros">
+                    <input type="date" id="dataInicio" placeholder="Data Início">
+                    <input type="date" id="dataFim" placeholder="Data Fim">
+                    <button class="btn" onclick="gerarRelatorio()">🔍 Filtrar</button>
+                </div>
+
+                <div class="relatorios-grid">
+                    <div class="relatorio-card">
+                        <h4>Vendas Totais</h4>
+                        <p class="numero">R$ 12.540,00</p>
+                        <small>Neste mês</small>
+                    </div>
+                    <div class="relatorio-card">
+                        <h4>Serviços Realizados</h4>
+                        <p class="numero">156</p>
+                        <small>Neste mês</small>
+                    </div>
+                    <div class="relatorio-card">
+                        <h4>Ticket Médio</h4>
+                        <p class="numero">R$ 80,38</p>
+                        <small>Por serviço</small>
+                    </div>
+                    <div class="relatorio-card">
+                        <h4>Satisfação</h4>
+                        <p class="numero">4.8⭐</p>
+                        <small>De 5 estrelas</small>
+                    </div>
+                </div>
+
+                <div class="relatorio-tabela">
+                    <h4>Top 10 Produtos Vendidos</h4>
+                    <table class="tabela">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Valor Total</th>
+                                <th>Margem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Fone Bluetooth</td>
+                                <td>45</td>
+                                <td>R$ 6.750,00</td>
+                                <td>35%</td>
+                            </tr>
+                            <tr>
+                                <td>Case Protetor</td>
+                                <td>38</td>
+                                <td>R$ 3.040,00</td>
+                                <td>40%</td>
+                            </tr>
+                            <tr>
+                                <td>Película Protetora</td>
+                                <td>92</td>
+                                <td>R$ 3.220,00</td>
+                                <td>50%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Gerenciamento de Usuários -->
+            <section id="usuarios" class="aba-conteudo">
+                <div class="usuarios-header">
+                    <h3>👤 Gerenciar Usuários</h3>
+                    <button class="btn btn-novo" onclick="novoUsuario()">➕ Novo Usuário</button>
+                </div>
+
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Usuário</th>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>Status</th>
+                            <th>Último Acesso</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>27020320</td>
+                            <td>admin@assistech.com</td>
+                            <td><span class="badge admin">Admin</span></td>
+                            <td><span class="status ativo">Ativo</span></td>
+                            <td>18/07/2026 14:32</td>
+                            <td>
+                                <button class="btn-pequeno" onclick="editarUsuario(1)">✏️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>operador001</td>
+                            <td>operador@assistech.com</td>
+                            <td><span class="badge operador">Operador</span></td>
+                            <td><span class="status ativo">Ativo</span></td>
+                            <td>18/07/2026 13:15</td>
+                            <td>
+                                <button class="btn-pequeno" onclick="editarUsuario(2)">✏️</button>
+                                <button class="btn-pequeno" onclick="deletarUsuario(2)">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>cliente001</td>
+                            <td>cliente@email.com</td>
+                            <td><span class="badge cliente">Cliente</span></td>
+                            <td><span class="status ativo">Ativo</span></td>
+                            <td>17/07/2026 10:45</td>
+                            <td>
+                                <button class="btn-pequeno" onclick="editarUsuario(3)">✏️</button>
+                                <button class="btn-pequeno" onclick="deletarUsuario(3)">🗑️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Painel do Cliente -->
+            <section id="painel-cliente" class="aba-conteudo">
+                <div class="painel-cliente-container">
+                    <h3>🌐 Painel do Cliente</h3>
+                    <p style="margin-bottom: 20px; color: #666;">Acesse como cliente para visualizar seus serviços</p>
+                    
+                    <button class="btn btn-grande" onclick="abrirPainelCliente()">
+                        🌐 Abrir Painel do Cliente
+                    </button>
+
+                    <div style="margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 8px;">
+                        <h4>📱 Recursos do Painel do Cliente:</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>✅ Visualizar status de serviços</li>
+                            <li>✅ Acompanhar orçamentos</li>
+                            <li>✅ Histórico de atendimentos</li>
+                            <li>✅ Abrir novos chamados</li>
+                            <li>✅ Chat em tempo real com técnico</li>
+                            <li>✅ Receber notificações</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Painel Cliente -->
+    <div id="painelClienteModal" class="modal" style="display: none;">
+        <div class="modal-content modal-grande">
+            <button class="btn-fechar" onclick="fecharPainelCliente()">✕</button>
+            
+            <div class="painel-cliente-header">
+                <h2>🌐 Meus Serviços</h2>
+            </div>
+
+            <div class="painel-cliente-tabs">
+                <button class="tab-btn ativo" onclick="abrirAbaPainelCliente('meus-servicos')">
+                    🔧 Meus Serviços
+                </button>
+                <button class="tab-btn" onclick="abrirAbaPainelCliente('novo-chamado')">
+                    ➕ Novo Chamado
+                </button>
+                <button class="tab-btn" onclick="abrirAbaPainelCliente('minha-conta')">
+                    👤 Minha Conta
+                </button>
+            </div>
+
+            <!-- Meus Serviços -->
+            <div id="meus-servicos" class="painel-cliente-conteudo ativo">
+                <h3>Meus Serviços</h3>
+                <div class="servicos-cliente">
+                    <div class="servico-card">
+                        <div class="servico-header">
+                            <h4>iPhone 12 - Tela Quebrada</h4>
+                            <span class="status em-andamento">Em Andamento</span>
+                        </div>
+                        <p><strong>Abertura:</strong> 18/07/2026</p>
+                        <p><strong>Orçamento:</strong> R$ 450,00</p>
+                        <p><strong>Previsão:</strong> 20/07/2026</p>
+                        <div class="progresso">
+                            <div class="progresso-bar" style="width: 60%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="servico-card">
+                        <div class="servico-header">
+                            <h4>Notebook - Limpeza de Vírus</h4>
+                            <span class="status finalizado">Finalizado</span>
+                        </div>
+                        <p><strong>Conclusão:</strong> 17/07/2026</p>
+                        <p><strong>Valor:</strong> R$ 150,00</p>
+                        <button class="btn btn-pequeno" onclick="avaliarServico()">⭐ Avaliar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Novo Chamado -->
+            <div id="novo-chamado" class="painel-cliente-conteudo">
+                <h3>Abrir Novo Chamado</h3>
+                <form class="form-chamado">
+                    <div class="form-group">
+                        <label>Equipamento:</label>
+                        <select required>
+                            <option>Selecione...</option>
+                            <option>Celular</option>
+                            <option>Notebook</option>
+                            <option>Tablet</option>
+                            <option>Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Descrição do Problema:</label>
+                        <textarea placeholder="Descreva o problema..." rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-sucesso">📤 Enviar Chamado</button>
+                </form>
+            </div>
+
+            <!-- Minha Conta -->
+            <div id="minha-conta" class="painel-cliente-conteudo">
+                <h3>Minha Conta</h3>
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" value="João Silva" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" value="joao@email.com" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Telefone:</label>
+                    <input type="tel" value="(11) 98765-4321" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Data de Cadastro:</label>
+                    <input type="text" value="15/03/2025" disabled>
+                </div>
+                <button class="btn btn-editar" onclick="editarConta()">✏️ Editar Dados</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="sistema.js"></script>
+</body>
+</html>
